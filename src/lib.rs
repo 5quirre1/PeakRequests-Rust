@@ -26,6 +26,7 @@ use reqwest::{blocking::Client, header, redirect::Policy};
 use serde_json::Value;
 use std::collections::HashMap;
 use std::time::Duration;
+use serde_json::from_str;
 
 #[derive(Debug)]
 pub struct Response {
@@ -43,6 +44,7 @@ pub struct PeakRequests {
     allow_redirects: bool,
     max_redirects: usize,
 }
+
 
 impl PeakRequests {
     pub fn new() -> Self {
@@ -174,6 +176,12 @@ impl PeakRequests {
             headers,
             url: response_url,
         })
+    }
+}
+
+impl Response {
+    pub fn json(&self) -> Result<Value, String> {
+        from_str(&self.text).map_err(|e| e.to_string())
     }
 }
 
