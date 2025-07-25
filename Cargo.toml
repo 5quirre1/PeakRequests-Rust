@@ -1,0 +1,15 @@
+[package]
+name = "peakrequests"
+version = "0.1.0"
+edition = "2021"
+description = "peakrequests made for rust"
+license = "MIT"
+authors = ["5quirre1 <squirrelhomebrew@gmail.com>"]
+repository = "https://github.com/5quirre1/peakrequests-rust"
+readme = "README.md"
+
+[dependencies]
+reqwest = { version = "0.11", features = ["blocking", "json", "rustls-tls"] }
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+thiserror = "1.0"
